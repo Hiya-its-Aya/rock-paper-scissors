@@ -7,13 +7,10 @@ function computerPlay(){
     return(compPlay);
 }
 
-
-
-
 function playRound(playerSelection, computerSelection) {
-    var playLow = playerSelection.toLowerCase()
+    var playLow = playerSelection.toLowerCase();
 
-    // a shit ton of if, else for possible combo
+    // a ton of if, else for possible combo
     if(playLow == "rock" && computerSelection == "paper"){
         console.log("Computer Wins: Paper beats rock.");
         return "compWin";
@@ -40,9 +37,10 @@ function playRound(playerSelection, computerSelection) {
     }
 
     else if(playLow == "paper" && computerSelection == "scissors"){
-        console.log("Computer Wins: Scissors beats paper.")
+        console.log("Computer Wins: Scissors beats paper.");
         return "compWin";
     }
+
     else{
         console.log("Tie.");
         return "tie";
@@ -50,31 +48,38 @@ function playRound(playerSelection, computerSelection) {
 }
 
 
-//Make it go to 5 rounds
+//Make it go to best of 5
 
 function game(){
-    for(let i = 0; i < 5; i++){
+    let numUserWin = 0;
+    let numCompWin = 0;
+    do{
+        const playerSelection = prompt("Enter rock, paper, or scissors: " )
+        const computerSelection = computerPlay();
         let outcome =  playRound(playerSelection, computerSelection);
-        let numUserWin = 0;
-        let numCompWin = 0;
         if(outcome === "compWin"){
             numCompWin++;
-            console.log(numCompWin);
-            i++;
-        }
+            // console.log(numCompWin);
+        } 
         else if(outcome === "userWin"){
             numUserWin++;
-            console.log(numUserWin);
-            i++
+            // console.log(numUserWin);
         }
         else{
-            return "tie";
         }
-    }
-    
+        console.log("You: " + numUserWin + ", Computer: " + numCompWin)
+    } while(numCompWin < 3 && numUserWin < 3){ 
+        if(numCompWin > numUserWin){
+            console.log("Computer Wins!");
+        }
+        else if(numUserWin > numCompWin){
+            console.log("You win!")
+        }
+        else{
+            console.log("Its a tie")
+        }
+    }    
 }
-
-
 
 let play = [
     "rock", 
@@ -82,9 +87,5 @@ let play = [
     "scissors"
 ]
 
-//let user pick rps with any caps
-const playerSelection = prompt("Enter rock, paper, or scissors: " )
-const computerSelection = computerPlay();
-console.log(playRound(playerSelection, computerSelection));
 game()
 
