@@ -81,6 +81,16 @@ function game(){
     }    
 }
 
+// function getButtonInput(){
+// const buttons = document.querySelectorAll('button');
+
+// buttons.forEach((button) => {
+//   button.addEventListener('click', () => {
+//     playerSelection = button.id;
+//   });
+//   });
+// }
+
 let play = [
     "rock", 
     "paper",
