@@ -1,8 +1,5 @@
 
 //make computer play rps at random
-
-
-
 function computerPlay(){
     let compPlay = play[Math.floor(Math.random() * play.length)];
     console.log(compPlay);
@@ -59,110 +56,78 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
+var buttons = document.querySelectorAll("button");
+buttons.forEach(button => { button.addEventListener('click', getPlayerChoice) });
 
-// Make it go to best of 5
+function getPlayerChoice(e) {
+    let playerSelection= (e.target.id);
+    playerChoice = e.target.textContent;
+    console.log(playerChoice);
+    playRound(playerSelection, computerPlay());
+  }
 
-
-var buttons = document.getElementsByTagName("button");
-var buttonsCount = buttons.length;
-
-let numUserWin = 0;
-let numCompWin = 0;
-
-   
-
-
-    for (var i = 0; i < buttonsCount; i += 1) { 
-        buttons[i].onclick = function(e) {
-        
-        
-        do{
-        let playerSelection = this.id;
-        console.log(playerSelection);
-        playerSelection;
-        const computerSelection = computerPlay();
-        let outcome =  playRound(playerSelection, computerSelection);
-        if(outcome === "compWin"){
-            numCompWin++;
-            console.log(numCompWin);
-        } 
-        else if(outcome === "userWin"){
-            numUserWin++;
-            console.log(numUserWin);
-        }
-        else{
-            return
-        }
-        console.log("You: " + numUserWin + ", Computer: " + numCompWin);
-        } while (numCompWin < 3 && numUserWin < 3);
-        if(numCompWin > numUserWin){
-            console.log("Computer Wins!");
-        }
-        else if(numUserWin > numCompWin){
-            console.log("You win!")
-        }
-        else{
-            console.log("Its a tie")
-        }
-    }
-}
-
-
-
-// function game(){
-//     let numUserWin = 0;
-//     let numCompWin = 0;
-//     do{ 
-//         var buttons = document.getElementsByTagName("button");
-//         var buttonsCount = buttons.length;
-//         const computerSelection = computerPlay(); 
-    
-//         for (var i = 0; i < buttonsCount; i += 1) {
-//             buttons[i].onclick = function(e) {
-//             let playerSelection = this.id;
-//             console.log(playerSelection);
-//             let outcome =  playRound(playerSelection, computerSelection);
-//             if(outcome === "compWin"){
-//                 numCompWin++;
-//                 // console.log(numCompWin);
-//             } 
-//             else if(outcome === "userWin"){
-//                 numUserWin++;
-//                 // console.log(numUserWin);
-//             }
-//             else{
-//                 return
-//             }
-//         }
-//         }
-//             console.log("You: " + numUserWin + ", Computer: " + numCompWin);
-//     } while(numCompWin < 3 && numUserWin < 3){ 
-//             if(numCompWin > numUserWin){
-//                 console.log("Computer Wins!");
-//             }
-//             else if(numUserWin > numCompWin){
-//                 console.log("You win!")
-//             }
-//             else{
-//                 console.log("Its a tie")
-//             }
-//         }    
-//         }
-    
-    
-// function getButton(){
-//     var buttons = document.getElementsByTagName("button");
-//     var buttonsCount = buttons.length;
-//     for (var i = 0; i < buttonsCount; i += 1) {
-//         buttons[i].onclick = function(e) {
-//         console.log(this.id);
-//         return this.id
-//         }
+// let numUserWin = 0;
+// let numCompWin = 0;
+// function getScore(){
+//     if(outcome === "compWin"){
+//         numCompWin++;
+//         // console.log(numCompWin);
+//     }   
+//     else if(outcome === "userWin"){
+//         numUserWin++;
+//         // console.log(numUserWin);
 //     }
+//     else{
+//     }
+//     console.log("You: " + numUserWin + ", Computer: " + numCompWin);
 // }
 
 
 
 
-// game()
+
+// Make it go to best of 5
+
+// let numUserWin = 0;
+// let numCompWin = 0;
+                
+
+  
+// function game(){
+    
+//     var buttonsCount = buttons.length;
+//     if (numCompWin < 3 || numUserWin < 3){
+//     for (var i = 0; i < buttonsCount; i += 1) { 
+//         buttons[i].onclick = function(e) {
+//             const playerSelection = this.id;
+//                 console.log(playerSelection);
+//                 const computerSelection = computerPlay();
+//                 let outcome = playRound(playerSelection, computerSelection);
+//                 if(outcome === "compWin"){
+//                     numCompWin++;
+//                     // console.log(numCompWin);
+//                 }   
+//                 else if(outcome === "userWin"){
+//                     numUserWin++;
+//                     // console.log(numUserWin);
+//                 }
+//                 else{
+//                 }
+//                 console.log("You: " + numUserWin + ", Computer: " + numCompWin);
+//             }
+            
+//         }
+//     }
+//     else{
+//         if(numCompWin > numUserWin){
+//         console.log("Computer Wins!");
+//         }
+//         else if(numUserWin > numCompWin){
+//         console.log("You win!")
+//         }
+//         else{
+//         console.log("Its a tie")
+//         }
+//     }
+//     }
 
