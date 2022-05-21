@@ -1,0 +1,19 @@
+/* *{
+    border: 1px dashed red;
+} */
+
+body{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Courier New', Courier, monospace;
+    justify-content: : space-between;
+}
+
+h1{
+    color:blueviolet;
+}
+
+#container .children{
+    font-weight: 500;
+}

@@ -1,10 +1,16 @@
+var buttons = document.querySelectorAll("button");
+buttons.forEach(button => {button.addEventListener('click', getPlayerChoice) });
 
-//make computer play rps at random
-function computerPlay(){
-    let compPlay = play[Math.floor(Math.random() * play.length)];
-    console.log(compPlay);
-    return(compPlay);
-}
+const container = document.querySelector('#container');
+
+const compPlayText = document.createElement('div');
+const content = document.createElement('div');
+const score = document.createElement('div');
+const winnerText = document.createElement('div');
+
+
+let numUserWin = 0;
+let numCompWin = 0;
 
 let play = [
     "rock", 
@@ -12,122 +18,127 @@ let play = [
     "scissors"
 ] 
 
+
+//make computer play rps at random
+function computerPlay(){
+    let compPlay = play[Math.floor(Math.random() * play.length)];
+
+    compPlayText.classList.add('compPlayText');
+    compPlayText.textContent = "Computer Play: " + compPlay;
+
+    container.appendChild(compPlayText);
+    return(compPlay);
+}
+
+
+
 function playRound(playerSelection, computerSelection) {
     playerSelection = playerSelection.toLowerCase();
 
     // a ton of if, else for possible combo
     if(playerSelection == "rock" && computerSelection == "paper"){
-        console.log("Computer Wins: Paper beats rock.");
+        content.classList.add('content');
+        content.textContent = "Computer Wins: Paper beats rock.";
+
+        container.appendChild(content);
         return "compWin";
     }
 
     else if(playerSelection == "rock" && computerSelection == "scissors"){
-        console.log("You Win: Rock beats scissors!");
+        content.classList.add('content');
+        content.textContent = "You Win: Rock beats scissors!";
+
+        container.appendChild(content);
         return "userWin";
     }
 
     else if(playerSelection == "scissors" && computerSelection == "rock"){
-        console.log("Computer Wins: Rock beats scissors.");
-        return "userWin";
+        content.classList.add('content');
+        content.textContent = "Computer Wins: Rock beats scissors.";
+
+        container.appendChild(content);
+        return "compWin";
     }
 
     else if(playerSelection == "scissors" && computerSelection == "paper"){
-        console.log("You Win: Scissors beats paper!");
+        content.classList.add('content');
+        content.textContent = "You Win: Scissors beats paper!";
+
+        container.appendChild(content);
         return "userWin";
     }
 
     else if(playerSelection == "paper" && computerSelection == "rock"){
-        console.log("You Win: Paper beats rock!");
+        content.classList.add('content');
+        content.textContent = "You Win: Paper beats rock!";
+
+        container.appendChild(content);
         return "userWin";
     }
 
     else if(playerSelection == "paper" && computerSelection == "scissors"){
-        console.log("Computer Wins: Scissors beats paper.");
+        content.classList.add('content');
+        content.textContent = "Computer Wins: Scissors beats paper.";
+
+        container.appendChild(content);
         return "compWin";
     }
 
-    else if(playerSelection === ""){
-        return;
-    }
-
     else{
-        console.log("Tie.");
+        content.classList.add('content');
+        content.textContent = "Tie.";
+
+        container.appendChild(content);
         return "tie";
     }
 }
 
-var buttons = document.querySelectorAll("button");
-buttons.forEach(button => { button.addEventListener('click', getPlayerChoice) });
+
 
 function getPlayerChoice(e) {
     let playerSelection= (e.target.id);
     playerChoice = e.target.textContent;
     console.log(playerChoice);
-    playRound(playerSelection, computerPlay());
-  }
+    let outcome = playRound(playerSelection, computerPlay());
 
-// let numUserWin = 0;
-// let numCompWin = 0;
-// function getScore(){
-//     if(outcome === "compWin"){
-//         numCompWin++;
-//         // console.log(numCompWin);
-//     }   
-//     else if(outcome === "userWin"){
-//         numUserWin++;
-//         // console.log(numUserWin);
-//     }
-//     else{
-//     }
-//     console.log("You: " + numUserWin + ", Computer: " + numCompWin);
-// }
+    if(outcome === "compWin"){
+        numCompWin++;
+        // console.log(numCompWin);
+    }   
+    else if(outcome === "userWin"){
+        numUserWin++;
+        // console.log(numUserWin);
+    }
+    else{
+    }
+    score.classList.add('score');
+    score.textContent = "You: " + numUserWin + ", Computer: " + numCompWin;
 
+    container.appendChild(score);
 
+    if(numCompWin > 2 || numUserWin > 2){
+        if(numCompWin > numUserWin){
+        winnerText.classList.add("winnerText");
+        winnerText.textContent = "Computer Wins! Reload to play again! ";
 
+        container.appendChild(winnerText);
+        winnerText.style = "background-color: red"
+        }
+        else{
+        winnerText.classList.add('WinnerText');
+        winnerText.textContent = "You win! Reload to play again! ";
 
-
-// Make it go to best of 5
-
-// let numUserWin = 0;
-// let numCompWin = 0;
-                
-
-  
-// function game(){
+        container.appendChild(winnerText);
+        winnerText.style = "background-color: green"
+        }
+        disableButtons();
     
-//     var buttonsCount = buttons.length;
-//     if (numCompWin < 3 || numUserWin < 3){
-//     for (var i = 0; i < buttonsCount; i += 1) { 
-//         buttons[i].onclick = function(e) {
-//             const playerSelection = this.id;
-//                 console.log(playerSelection);
-//                 const computerSelection = computerPlay();
-//                 let outcome = playRound(playerSelection, computerSelection);
-//                 if(outcome === "compWin"){
-//                     numCompWin++;
-//                     // console.log(numCompWin);
-//                 }   
-//                 else if(outcome === "userWin"){
-//                     numUserWin++;
-//                     // console.log(numUserWin);
-//                 }
-//                 else{
-//                 }
-//                 console.log("You: " + numUserWin + ", Computer: " + numCompWin);
-//             }
-            
-//         }
-//     }
-//     else{
-//         if(numCompWin > numUserWin){
-//         console.log("Computer Wins!");
-//         }
-//         else if(numUserWin > numCompWin){
-//         console.log("You win!")
-//         }
-//         else{
-//         console.log("Its a tie")
-//         }
-//     }
-//     }
+    } 
+}
+
+function disableButtons() {
+    buttons.forEach(elem => {
+        elem.disabled = true
+    })
+}
 
