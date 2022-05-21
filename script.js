@@ -1,3 +1,5 @@
+
+// here is a comment 
 var buttons = document.querySelectorAll("button");
 buttons.forEach(button => {button.addEventListener('click', getPlayerChoice) });
 
